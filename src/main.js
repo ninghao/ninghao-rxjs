@@ -3,9 +3,11 @@ import { Observable } from 'rxjs/Observable'
 const fruitsObservable = Observable.create(observer => {
   observer.next('🍎')
   observer.next('🍊')
-  observer.error(new Error('😭 someone took my fruit.'))
-  observer.complete()
-  observer.next('🍋')
+  // observer.error(new Error('😭 someone took my fruit.'))
+  setTimeout(() => {
+    observer.next('🍋')
+    observer.complete()
+  }, 2000)
 })
 
 const fruitsObserver = {
@@ -14,4 +16,6 @@ const fruitsObserver = {
   complete: () => console.log('done!')
 }
 
+console.log('--- before subscribe ---')
 fruitsObservable.subscribe(fruitsObserver)
+console.log('--- after subscribe ---')
