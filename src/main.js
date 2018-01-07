@@ -17,5 +17,9 @@ const fruitsObserver = {
 }
 
 console.log('--- before subscribe ---')
-fruitsObservable.subscribe(fruitsObserver)
+const fruitsSubscription = fruitsObservable.subscribe(fruitsObserver)
 console.log('--- after subscribe ---')
+
+setTimeout(() => {
+  fruitsSubscription.unsubscribe()
+}, 1000)
